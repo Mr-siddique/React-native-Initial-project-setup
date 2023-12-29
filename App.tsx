@@ -24,11 +24,14 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-
+import TestPageOne from './App/Pages/TestPageOne';
+import createSore from "./App/Redux";
+import { Provider } from 'react-redux';
+const store = createSore()
 type SectionProps = PropsWithChildren<{
   title: string;
 }>;
-
+console.log(">>makichu")
 function Section({children, title}: SectionProps): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
   return (
@@ -63,11 +66,14 @@ function App(): React.JSX.Element {
   };
 
   return (
+      <Provider store={store}>
     <SafeAreaView style={backgroundStyle}>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
+      <TestPageOne/>
+    
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
@@ -93,6 +99,7 @@ function App(): React.JSX.Element {
         </View>
       </ScrollView>
     </SafeAreaView>
+    </Provider>
   );
 }
 
